@@ -1,42 +1,58 @@
-import React from 'react'
-import { Menu, MenuButton, MenuList, MenuItem, Button, Box } from '@chakra-ui/react'
-import CartWidget from './CartWidget'
-import { Flex, Spacer } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
-import cart from '../assets/perrito.jpg'
-
-
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Flex, Spacer, Heading, Box, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import CartWidget from './CartWidget';
+import marca from '../assets/perritoI.jpg';
 
 const NavBar = () => {
   return (
-    <Flex style={{
-      backgroundColor: '#C88EA7',
-    }}>
+    <Flex
+      style={{
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        backgroundColor: '#C88EA7',
+        height: '60px', 
+        alignItems: 'center', 
+        padding: '0 10px', 
+      }}
+    >
       <Box>
-        <img src={cart} alt="imagen logo" width='80px'/>
+        <Link to={'/'}>
+          <img src={marca} alt="imagen logo" width='60px' style={{ borderRadius: '50%', maxWidth: '60px' }} />
+        </Link>
       </Box>
-      <Box>
-      <Menu isLazy>
-          <MenuButton textColor='white' padding='10px'>Servicios</MenuButton>
+      <Box marginLeft='0px'>
+        <Menu isLazy>
+          <MenuButton textColor='white' padding='5px' fontSize='16px'> 
+            Servicios
+          </MenuButton>
           <MenuList>
-            <MenuItem>Peluquería</MenuItem>
-            <MenuItem>Ropa</MenuItem>
-            <MenuItem>Accesorios</MenuItem>
-            <MenuItem>Contacto</MenuItem>
+            <MenuItem fontSize='14px'> 
+              <Link to={`/category/${'cat1'}`}>Peluquería</Link>
+            </MenuItem>
+            <MenuItem fontSize='14px'> 
+              <Link to={`/category/${'cat2'}`}>Ropa</Link>
+            </MenuItem>
+            <MenuItem fontSize='14px'> 
+              <Link to={`/category/${'cat3'}`}>Accesorios</Link>
+            </MenuItem>
           </MenuList>
-      </Menu>
+        </Menu>
       </Box>
-      <Spacer/>
-        <Box>
-        <Heading size='lg' fontSize='35px' textColor='white' marginLeft='-120px'>
-        Pet-Store "Mordelon"
+      <Spacer />
+      <Box>
+        <Heading size='lg' fontSize='40px' textColor='white' marginLeft='-150px'>
+          Pet-Store "Mordelon"
         </Heading>
-        </Box> 
-      <Spacer/>
-        <CartWidget/>
+      </Box>
+      <Spacer />
+      <Link to={'/cart'}>
+        <CartWidget />
+      </Link>
     </Flex>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

@@ -8,7 +8,7 @@ const CartWidget = () => {
   return (
     <Flex>
        <Box>
-       <ShoppingCartOutlined style={{fontSize:'45px'}}/>
+       <ShoppingCartOutlined style={{fontSize:'35px'}}/>
        </Box>
         <Spacer/>
       <Box>
