@@ -13,13 +13,13 @@ import pretales from '../assets/pretales.jpg';
 const ItemDetailContainer = () => {
    
     const productos = [
-      { id: 1, nombre: "Gatos", description: "Baño y Corte", stock: 1, category: "cat1", src: gatosBaño },
-      { id: 2, nombre: "Perros", description: "Baño y Corte", stock: 1, category: "cat1", src: perroBaño },
-      { id: 3, nombre: "Sport", description: "Variedad de talles y modelos", stock: 5, category: "cat2", src: sport },
-      { id: 4, nombre: "Abrigos", description: "Variedad de talles y modelos", stock: 5, category: "cat2", src: abrigo },
-      { id: 5, nombre: "Pilotos", description: "Variedad de talles y modelos", stock: 3, category: "cat2", src: pilotos },
-      { id: 6, nombre: "Pretales", description: "Todos los tamaños", stock: 10, category: "cat3", src: pretales },
-      { id: 7, nombre: "Juguetes", description: "Perros y gatos", stock: 15, category: "cat3", src: juguetes },
+      { id: 1, nombre: "Gatos", description: "Baño y Corte", precio: 50, category: "cat1", src: gatosBaño },
+      { id: 2, nombre: "Perros", description: "Baño y Corte", precio: 30, category: "cat1", src: perroBaño },
+      { id: 3, nombre: "Sport", description: "Variedad de talles y modelos", precio: 45, category: "cat2", src: sport },
+      { id: 4, nombre: "Abrigos", description: "Variedad de talles y modelos", precio: 50, category: "cat2", src: abrigo },
+      { id: 5, nombre: "Pilotos", description: "Variedad de talles y modelos", precio: 90, category: "cat2", src: pilotos },
+      { id: 6, nombre: "Pretales", description: "Todos los tamaños", precio: 100, category: "cat3", src: pretales },
+      { id: 7, nombre: "Juguetes", description: "Perros y gatos", precio: 30, category: "cat3", src: juguetes },
     ]
   
     const getProductos = new Promise((resolve, reject)=> {

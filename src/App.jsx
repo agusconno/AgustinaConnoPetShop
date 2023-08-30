@@ -8,10 +8,12 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Cart from './Components/Cart';
 import fondo from '../src/assets/huesitos.jpg'; 
+import { CartProvider } from './context/CartContext';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <CartProvider> 
       <div style={{
         backgroundImage: `url(${fondo})`,
         backgroundSize: 'cover',
@@ -37,6 +39,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
+      </CartProvider>
     </BrowserRouter>
   );
 };
