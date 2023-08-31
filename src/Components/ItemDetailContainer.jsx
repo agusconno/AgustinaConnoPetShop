@@ -1,54 +1,48 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'; // Importa el hook useParams
+import React, { useEffect, useState } from 'react';
 import { Center } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import ItemDetail from './ItemDetail';
-import gatosBaño from '../assets/gatitoMojado.jpg';
-import perroBaño from '../assets/perritoMojado.jpg';
-import sport from '../assets/sport.jpg';
-import abrigo from '../assets/abrigo.jpg';
-import pilotos from '../assets/pilotos.jpg';
-import juguetes from '../assets/juguetes.jpg';
-import pretales from '../assets/pretales.jpg';
 
 const ItemDetailContainer = () => {
-   
-    const productos = [
-      { id: 1, nombre: "Gatos", description: "Baño y Corte", precio: 50, category: "cat1", src: gatosBaño },
-      { id: 2, nombre: "Perros", description: "Baño y Corte", precio: 30, category: "cat1", src: perroBaño },
-      { id: 3, nombre: "Sport", description: "Variedad de talles y modelos", precio: 45, category: "cat2", src: sport },
-      { id: 4, nombre: "Abrigos", description: "Variedad de talles y modelos", precio: 50, category: "cat2", src: abrigo },
-      { id: 5, nombre: "Pilotos", description: "Variedad de talles y modelos", precio: 90, category: "cat2", src: pilotos },
-      { id: 6, nombre: "Pretales", description: "Todos los tamaños", precio: 100, category: "cat3", src: pretales },
-      { id: 7, nombre: "Juguetes", description: "Perros y gatos", precio: 30, category: "cat3", src: juguetes },
-    ]
-  
-    const getProductos = new Promise((resolve, reject)=> {
-      if ( productos.length > 0) {
-        setTimeout(() => {
-          resolve(productos);
-        }, 2000)
-        } else{
-        reject(new Error ("No hay datos"))
-      }
-    })
-  
-    getProductos
-      .then((res) => {
-        console.log("Productos obtenidos:", res);
-     })
-     .catch((error) => {
-      console.log("Error al obtener los datos:", error);
-     })
-  
-     
-    return (
-      <>
-      <ItemDetail
-          productos={productos}
-          />
-      </>
-    )
-     
-  }
+  const { id } = useParams();
+  const [producto, setProducto] = useState(null);
+  console.log('ID from useParams:', id);
 
-export default ItemDetailContainer
+
+  useEffect(() => {
+    const db = getFirestore();
+    const productoDoc = doc(db, 'Items', id); // Cambiado a 'Items' según el nombre de tu colección en Firestore
+    console.log('ProductoDoc:', productoDoc);
+
+    console.log('Fetching product with ID:', id);
+
+    getDoc(productoDoc)
+      .then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          const productData = docSnapshot.data();
+          console.log('Product data:', productData);
+          setProducto(productData);
+        } else {
+          console.log('El producto no existe');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al obtener el producto:', error);
+      });
+  }, [id]);
+
+  console.log('Render - producto:', producto);
+
+  return (
+    <Center p='1rem'>
+      {producto ? <ItemDetail producto={producto} /> : <div>Cargando...</div>}
+    </Center>
+  );
+}
+
+export default ItemDetailContainer;
+
+
+
+

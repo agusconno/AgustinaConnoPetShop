@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react';
 
 const ItemList = ({ productos }) => {
   return (
-    <Flex align="center" justify="center" height="100vh">
+    <Flex align="center" justify="center" height="100vh" >
       {productos.map((p) => (
         <Item
           key={p.id}
