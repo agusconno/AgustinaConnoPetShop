@@ -20,7 +20,7 @@ const ItemDetailContainer = () => {
     getDoc(productoDoc)
       .then((docSnapshot) => {
         if (docSnapshot.exists()) {
-          const productData = docSnapshot.data();
+          const productData = { ...docSnapshot.data(), id: docSnapshot.id };
           console.log('Product data:', productData);
           setProducto(productData);
         } else {

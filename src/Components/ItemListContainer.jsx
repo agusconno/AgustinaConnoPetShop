@@ -18,7 +18,7 @@ const ItemListContainer = () => {
       .then((querySnapshot) => {
         const products = [];
         querySnapshot.forEach((doc) => {
-          products.push(doc.data());
+          products.push({ ...doc.data(), id: doc.id });
         });
         setProductos(products);
       })
