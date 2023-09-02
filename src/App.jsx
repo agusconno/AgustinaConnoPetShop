@@ -9,6 +9,7 @@ import Contact from './Components/Contact';
 import Cart from './Components/Cart';
 import fondo from '../src/assets/huesitos.jpg'; 
 import { CartProvider } from './context/CartContext';
+import SendOrder from './Components/SendOrder'; 
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/category/:category" element={<ItemListContainer />} />
             <Route exact path="/Item/:id" element={<ItemDetailContainer />} />
+            <Route exact path="/Formulario" element={<SendOrder />} />
           </Routes>
         </div>
       </div>
